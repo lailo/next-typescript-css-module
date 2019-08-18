@@ -1,17 +1,12 @@
 import React from 'react'
 import { NextPage } from 'next'
+import styles from './styles.scss'
 
-interface Props {
-  userAgent?: string
-}
-
-const Page: NextPage<Props> = ({ userAgent }) => (
-  <main>Your user agent: {userAgent}</main>
+const Page: NextPage = () => (
+  <main className={styles.indexPage}>
+    <header className={styles.header}>Hello</header>
+    <div className={styles.info}>World</div>
+  </main>
 )
-
-Page.getInitialProps = async ({ req }) => {
-  const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
-  return { userAgent }
-}
 
 export default Page

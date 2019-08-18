@@ -4,8 +4,12 @@
   "description": "NextJS with TypeScript using CSS Module with auto generated types.",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
+    "dev": "concurrently npm:dev:*",
+    "dev:next": "next",
+    "dev:styles": "npm run build:styles -- --watch",
+    "build": "npm run build:styles && npm run build:next",
+    "build:next": "next build",
+    "build:styles": "tsm pages --aliasPrefixes.~ node_modules/",
     "start": "next start"
   },
   "husky": {
@@ -33,16 +37,20 @@
   },
   "homepage": "https://github.com/lailo-ch/next-typescript-css-module#readme",
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
     "next": "^9.0.3",
+    "node-sass": "^4.12.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
     "@types/node": "^12.7.2",
     "@types/react": "^16.9.2",
+    "concurrently": "^4.1.2",
     "husky": "^3.0.4",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
+    "typed-scss-modules": "0.0.11",
     "typescript": "^3.5.3"
   }
 }
